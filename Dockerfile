@@ -22,8 +22,6 @@ WORKDIR /home/mohamed
 # required by api server to determine config/crds path
 ENV GOPATH=/go
 COPY --from=builder /go/pkg/mod/github.com/mohamed-abdelrhman/pack-dispatch /go/pkg/mod/github.com/mohamed-abdelrhman/pack-dispatch
-# tools (etcd, apiserver, and kubectl) required by envtest
-COPY --from=builder /usr/local/kubebuilder /usr/local/kubebuilder
 COPY --from=builder /api/server /home/mohamed/api/server
 
 EXPOSE 5000
