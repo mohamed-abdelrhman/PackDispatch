@@ -12,10 +12,10 @@ services:
   pack-dispatch:
     image: mohamedabdelrhman/packdispatch
     ports:
-      - 5000:5000
+      - 8080:8080
     environment:
-      MOCK: "true"
       DB_SERVER_URL: postgres://postgres:secret@postgres:5432/postgres
+      SERVER_PORT: 8080
     restart: on-failure
     depends_on:
       - postgres
