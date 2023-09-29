@@ -2,7 +2,7 @@
 This README provides instructions on how to use the calculatePacks API endpoint provided by PackDispatch.
 
 
-## overview
+## Overview
 The calculatePacks endpoint calculates the number and sizes of packs needed to fulfill a given order quantity. It accepts a JSON payload with the quantity field, which represents the quantity of the order.
 
 ## API Call
