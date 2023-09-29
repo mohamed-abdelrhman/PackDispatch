@@ -24,5 +24,5 @@ ENV GOPATH=/go
 #COPY --from=builder /go/pkg/mod/github.com/mohamed-abdelrhman/pack-dispatch /go/pkg/mod/github.com/mohamed-abdelrhman/pack-dispatch
 COPY --from=builder /api/server /home/mohamed/api/server
 
-EXPOSE 5000
+EXPOSE 8080
 ENTRYPOINT [ "./api/server" ]
