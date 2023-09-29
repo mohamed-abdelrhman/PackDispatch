@@ -24,5 +24,5 @@ func Packs(c *fiber.Ctx) error {
 		return c.Status(err.StatusCode()).JSON(err)
 	}
 
-	return c.Status(http.StatusCreated).JSON(shared.NewResponse(packsNeeded))
+	return c.Status(http.StatusOK).JSON(shared.NewResponse(packsNeeded))
 }

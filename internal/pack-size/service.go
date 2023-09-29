@@ -2,15 +2,12 @@ package pack_size
 
 import (
 	restErrors "github.com/mohamed-abdelrhman/pack-dispatch/pkg/errors"
-	"gorm.io/gorm"
 	"sort"
 )
 
 type service struct{}
 
 type IService interface {
-	WithTransaction(txHandle *gorm.DB) IService
-	WithoutTransaction() IService
 	CalculatePacks(qty uint) ([]PackCountResponseDto, restErrors.IRestErr)
 }
 
@@ -23,21 +20,14 @@ func NewService() IService {
 	return newService
 }
 
-func (s service) WithTransaction(txHandle *gorm.DB) IService {
-	repo = repo.WithTransaction(txHandle)
-	return s
-}
-func (s service) WithoutTransaction() IService {
-	repo = repo.WithoutTransaction()
-	return s
-}
-
 func (s service) CalculatePacks(qty uint) ([]PackCountResponseDto, restErrors.IRestErr) {
+	if qty == 0 {
+		return []PackCountResponseDto{}, nil
+	}
 	packSizes, err := repo.OrderMany("size", "desc")
 	if err != nil {
 		return []PackCountResponseDto{}, err
 	}
-
 	packsMap := map[uint]PackCountResponseDto{}
 
 	for _, pack := range packSizes {
@@ -116,4 +106,3 @@ func (s service) CalculatePacks(qty uint) ([]PackCountResponseDto, restErrors.IR
 
 	return consolidatedPacks, nil
 }
-

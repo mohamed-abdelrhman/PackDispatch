@@ -13,8 +13,6 @@ type repository struct {
 }
 
 type IRepository interface {
-	WithTransaction(txHandle *gorm.DB) IRepository
-	WithoutTransaction() IRepository
 	OrderMany(field string, direction string) ([]PackSize, restErrors.IRestErr)
 }
 
@@ -22,15 +20,6 @@ func NewRepository() IRepository {
 	newRepo := repository{}
 	newRepo.db = sqlclient.OpenDBConnection()
 	return newRepo
-}
-
-func (r repository) WithTransaction(txHandle *gorm.DB) IRepository {
-	r.db = txHandle
-	return r
-}
-func (r repository) WithoutTransaction() IRepository {
-	r.db = sqlclient.OpenDBConnection()
-	return r
 }
 
 func (r repository) OrderMany(field string, direction string) ([]PackSize, restErrors.IRestErr) {
