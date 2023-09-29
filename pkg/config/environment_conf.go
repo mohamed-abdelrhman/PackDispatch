@@ -17,7 +17,7 @@ var (
 		ServerReadTimeout string
 		DatabaseServerURL string
 	}{
-		ServerPort:        getenv("CLOUD_API_SERVER_PORT", "8082"),
+		ServerPort:        getenv("CLOUD_API_SERVER_PORT", "5000"),
 		Environment:       getenv("ENVIRONMENT", "development"),
 		ServerReadTimeout: getenv("SERVER_READ_TIMEOUT", "60"),
 		DatabaseServerURL: getenv("DB_SERVER_URL", "postgres://postgres:secret@localhost:5432/packsizer"),
