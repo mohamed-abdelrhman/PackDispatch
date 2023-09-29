@@ -1,0 +1,24 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: pack-dispatch-deployment
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: pack-dispatch
+  template:
+    metadata:
+      labels:
+        app: pack-dispatch
+    spec:
+      containers:
+        - name: pack-dispatch
+          image: mohamedabdelrhman/packdispatch:latest
+          ports:
+            - containerPort: 8080
+          env:
+          - name: DB_SERVER_URL
+            value: "postgres://postgres:secret@postgres-service:5432/postgres"
+          - name : SERVER_PORT
+            value: "8080"
