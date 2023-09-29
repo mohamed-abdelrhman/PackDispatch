@@ -1,0 +1,21 @@
+# NOTE: this is not production deployment script. It's just for testing purposes
+version: "3.9"
+services:
+
+  postgres:
+    image: postgres
+    environment:
+      POSTGRES_PASSWORD: secret
+    ports:
+      - 5432:5432
+
+  pack-dispatch:
+    image: mohamedabdelrhman/packdispatch
+    ports:
+      - 5000:5000
+    environment:
+      MOCK: "true"
+      DB_SERVER_URL: postgres://postgres:secret@postgres:5432/postgres
+    restart: on-failure
+    depends_on:
+      - postgres
