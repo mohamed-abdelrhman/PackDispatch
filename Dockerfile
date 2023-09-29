@@ -21,7 +21,7 @@ WORKDIR /home/mohamed
 
 # required by api server to determine config/crds path
 ENV GOPATH=/go
-COPY --from=builder /go/pkg/mod/github.com/mohamed-abdelrhman/pack-dispatch /go/pkg/mod/github.com/mohamed-abdelrhman/pack-dispatch
+#COPY --from=builder /go/pkg/mod/github.com/mohamed-abdelrhman/pack-dispatch /go/pkg/mod/github.com/mohamed-abdelrhman/pack-dispatch
 COPY --from=builder /api/server /home/mohamed/api/server
 
 EXPOSE 5000
